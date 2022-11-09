@@ -18,67 +18,23 @@
 [files]
 # Uncomment examples below
 dotsyncrc
-#ack/ackrc
-#aptitude
-#bin:bin
-#ctags/ctags
-#cmus
-#curl/curlrc
-#git/gitconfig
-#git/gitignore
-#git/gitattributes
-#git/tigrc
-#git/gitk
-#gnupg
-#grc
-#input/editrc
-#input/inputrc
-#irssi
-#mpd/mpd.conf
-#mercurial/hgrc
-#mercurial/hgignore
-#mutt
-#mutt/muttrc
-#mutt/offlineimaprc
-#mysql/my.cnf
-#ncmpcpp/config
-#ncmpcpp/error.log
-#postgresql/psqlrc
-#python/pythonrc
-#python/pylintrc
-#rpm/rpmmacros
-#ruby/irbrc
-#ruby/pryrc
-#ruby/gemrc
-#ruby/railsrc
-#ruby/rdebugrc
-#ruby/aprc
-#ruby/caprc
-#screen/screenrc
-#shell/hushlogin
-#shell/urlview
+git/gitconfig
+git/gitignore
+kitty/kitty.conf:.config/kitty/kitty.conf
 #ssh
-#subversion
-#task/task
-#task/taskrc
-#tmux/tmux.conf
-#tmux/tmuxinator
-#vim/dotvim:.vim
-#vim/vimrc
-#vim/gvimrc
-#wget/wgetrc
-#zsh/fasdrc
-#zsh/dotzsh:.zsh
-#zsh/zlogin
-#zsh/zlogout
-#zsh/zprofile
-#zsh/zshenv
-#zsh/zshrc
+tmux
+tmux/tmux.conf
+zsh/zshaliases
+zsh/zshenv
+zsh/zshplugins
+zsh/zshrc
+zsh/zshtheme
 [endfiles]
 
 # Hosts to sync
 ## hostname                     type=masterhost, ANY or NONE    files=dotfile:tolink,another:tolink
 [hosts]
+pegaze                           git=ANY
 #host1.example.com               git=ANY                        files=custom/dotfile    #git repo, pull from anywhere and link a custom dotfile
 #host2.example.com               git=ANY                                                #git repo, pull from anywhere
 #host3.example.com               git=ANY                                                #git repo, pull from anywhere

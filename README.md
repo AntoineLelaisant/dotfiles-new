@@ -13,16 +13,6 @@ your machines.
     tricks for the ones you already use.
   - **Share** what you've learned with the rest of us.
 
-Example dotfiles for:
-
-  - `zsh`
-  - `vim` `nano`
-  - `git` `mercurial` `subversion`
-  - `python` `ruby` `perl`
-  - `screen` `tmux`
-  - `mutt` `irssi`
-  - and many more!
-
 Installation
 ------------
 
@@ -212,4 +202,4 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 [5]: https://github.com/chriskempson/base16
 [6]: https://github.com/Lokaltog/powerline-fonts
 [7]: https://github.com/dotphiles/dotphiles/graphs/contributors
-  
+

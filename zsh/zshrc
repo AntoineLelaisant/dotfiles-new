@@ -1,114 +1,122 @@
-#
-# dotphiles : https://github.com/dotphiles/dotphiles
-#
-# Sets dotzsh options.
-#
-# Authors:
-#   Ben O'Hara <bohara@gmail.com>
-#
+source $HOME/.zshenv
+source $HOME/.zshplugins
+source $HOME/.zshtheme
+source $HOME/.zshaliases
 
-# debug: see with `dzinfo`
-##zstyle ':dotzsh:load' timing 'yes'
-##zstyle ':dotzsh:module:*' timing 'yes'
+setopt correct # Command correction
+setopt globdots # Hidden files tab completion
+setopt auto_pushd
+stty -ixon # Disables XON/XOFF flow control
 
-# Set the Zsh modules to load (man zshmodules).
-zstyle ':dotzsh:load' zmodule 'stat'
+zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==34=34}:${(s.:.)LS_COLORS}")'; # Tab colors
 
-# Set the Zsh functions to load (man zshcontrib).
-zstyle ':dotzsh:load' zfunction 'zargs' 'zmv'
+# Completion options
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
-# Set the dotzsh modules to load (browse modules).
-# The order matters.
-zstyle ':dotzsh:load' dzmodule \
-  'gnu-utility' \
-  'environment' \
-  'terminal' \
-  'editor' \
-  'history' \
-  'utility' \
-  'completion' \
-  'theme'
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:options' auto-description '%d'
+zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
+zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
+zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
+zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' verbose yes
 
-### Global settings
-# Color output (auto set to 'no' on dumb terminals).
-zstyle ':dotzsh:module:*' color 'yes'
-# Setup aliases for modules (disable per module below).
-zstyle ':dotzsh:module:*' aliases 'yes'
-# Set case-sensitivity for completion, history lookup, etc.
-zstyle ':dotzsh:module:*' case-sensitive 'no'
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
 
-### Environment module
-# Set which PAGER to use less or more
-##zstyle ':dotzsh:module:environment' pager 'less'
-# Enable mouse scrolling in less, add the following to *zshrc*
-##zstyle ':dotzsh:module:environment:pager:less' mousescroll 'false'
+# Fixes keys
+bindkey -e
+bindkey "\e[1~" beginning-of-line
+bindkey "\e[4~" end-of-line
+bindkey "\e[5~" beginning-of-history
+bindkey "\e[6~" end-of-history
+bindkey "\e[7~" beginning-of-line
+bindkey "\e[3~" delete-char
+bindkey "\e[2~" quoted-insert
+bindkey "\e[5C" forward-word
+bindkey "\e[5D" backward-word
+bindkey "\e\e[C" forward-word
+bindkey "\e\e[D" backward-word
+bindkey "\e[1;5C" forward-word
+bindkey "\e[1;5D" backward-word
+bindkey "\e[8~" end-of-line
+bindkey "\eOH" beginning-of-line
+bindkey "\eOF" end-of-line
+bindkey "\e[H" beginning-of-line
 
-### Terminal Module
-# Auto set the tab and window titles.
-zstyle ':dotzsh:module:terminal' auto-title 'yes'
+# Enables shift tab
+bindkey '^[[Z' reverse-menu-complete
 
-### Editor module
-# Set the key mapping style to 'emacs' or 'vi'.
-zstyle ':dotzsh:module:editor' keymap 'emacs'
-# Set EDITOR to 'emacs' or 'vi'.
-zstyle ':dotzsh:module:editor' editor 'vi'
-# Auto convert .... to ../..
-#zstyle ':dotzsh:module:editor' dot-expansion 'yes'
+# Enables emacs mode
 
-### Utility Module
-# Disable `diff` highlighting
-##zstyle ':dotzsh:module:utility:diff' color 'no'
-# Disable `wdiff` highlighting
-##zstyle ':dotzsh:module:utility:wdiff' color 'no'
-# Disable `make` highlighting
-##zstyle ':dotzsh:module:utility:make' color 'no'
+set -o emacs
 
-### Completion module
-# Expand global aliases automatically
-#zstyle ':dotzsh:module:completion' expand-global-aliases 'yes'
+# Arrows search
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
-### SSH module
-zstyle ':dotzsh:module:ssh:agent' forwarding 'yes'
-#zstyle ':dotzsh:module:ssh:aliases' hosts 'yes'
-##zstyle ':dotzsh:module:ssh:agent' identities 'id_rsa' 'id_rsa2' 'id_github'
+#eval $(keychain --eval --quiet id_ed25519 $HOME/.ssh/id_ed25519)
 
-### GNUPG module
-# Enable ssh-agent protocol emulation for gpg-agent
-##zstyle ':dotzsh:module:gnupg' agent-ssh-support 'yes'
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-### OSX module
-# Add aliases for Applications
-##zstyle ':dotzsh:module:osx' launcher 'yes'
-# Open/Resume temrinal in correct dir
-##zstyle ':dotzsh:module:osx' terminal-resume 'yes'
+export FZF_CTRL_T_OPTS="--bind ?:toggle-preview --preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 
-### Git module
-# Disable all git aliases
-##zstyle ':dotzsh:module:git' aliases 'no'
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
 
-### TMUX module
-# Auto start a session when Zsh is launched.
-# Setting it to 'local' only starts a session for local terminals.
-# Setting it to 'remote' only starts a session for SSH connections.
-##zstyle ':dotzsh:module:tmux' auto-start 'no'
-#zstyle ':dotzsh:module:tmux:aliases' tmuxinator 'yes'
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
 
-### Syntax Highlighting module
-#zstyle ':dotzsh:module:syntax-highlighting' highlighters 'main' 'brackets' 'pattern' \
-#  'cursor' 'root' \
+_fzf_complete_docker() {
+  # Get all Docker commands
+  #
+  # Cut below "Management Commands:", then exclude "Management Commands:",
+  # "Commands:" and the last line of the help. Then keep the first column and
+  # delete empty lines
+  DOCKER_COMMANDS=$(docker --help 2>&1 >/dev/null |
+    sed -n -e '/Management Commands:/,$p' |
+    grep -v "Management Commands:" |
+    grep -v "Commands:" |
+    grep -v 'COMMAND --help' |
+    grep .
+  )
 
-### Theme module
-# Set default theme to load.
-# Setting it to 'random' loads a random theme.
-# Auto set to 'off' on dumb terminals.
-zstyle ':dotzsh:module:theme' theme 'dotphiles'
-### Set custom theme based on hostname or domain
-# zstyle ':dotzsh:module:theme:hostname:your-host-here' theme 'dotphiles' 'soldark' 'magenta'
-# zstyle ':dotzsh:module:theme:hostname:your-other-host-here' theme 'dotphiles' 'soldark' 'violet'
-# zstyle ':dotzsh:module:theme:domain:your-domain-here' theme 'dotphiles' 'soldark' 'orange'
+  ARGS="$@"
+  if [[ $ARGS == 'docker ' ]]; then
+    _fzf_complete "--reverse -n 1 --height=80%" "$@" < <(
+      echo $DOCKER_COMMANDS
+    )
+  elif [[ $ARGS == 'docker rmi'* || $ARGS == 'docker -f'* ]]; then
+    _fzf_complete "--multi --reverse" "$@" < <(
+      docker images --format '{{.Repository}}:{{.Tag}}'
+    )
+  elif [[ $ARGS == 'docker start'* || $ARGS == 'docker restart'* || $ARGS == 'docker stop'* || $ARGS == 'docker rm'* || $ARGS == 'docker exec'* || $ARGS == 'docker kill'* ]]; then
+    _fzf_complete "--multi --reverse" "$@" < <(
+      docker ps --format '{{.Names}}'
+    )
+  fi
+}
 
-### Load dotzsh
-source "$DOTZSH/init.zsh"
+_fzf_complete_docker_post() {
+  # Post-process the fzf output to keep only the command name and not the explanation with it
+  awk '{print $1}'
+}
 
-### Customize to your needs...
+[ -n "$BASH" ] && complete -F _fzf_complete_docker -o default -o bashdefault docker
 
+# Find in files and return filenames
+fif() {
+  if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
+  rg --files-with-matches --no-messages "$1" | fzf --height 40% --multi --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --pretty --context 10 '$1' || rg --pretty --context 10 '$1' {}"
+}
+
+rp() {
+  sd $1 $2 $(fif $1)
+}

@@ -1,0 +1,10 @@
+source $ZPLUG_HOME/init.zsh
+
+zplug "romkatv/powerlevel10k", as:theme, depth:1
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-history-substring-search"
+zplug "yukiycino-dotfiles/fancy-ctrl-z"
+
+zplug load

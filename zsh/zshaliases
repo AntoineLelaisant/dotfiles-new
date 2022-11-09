@@ -1,0 +1,21 @@
+alias v='nvim'
+alias vi='nvim'
+alias vim='nvim'
+alias sv='sudo -E nvim'
+alias bc='bc -ql'
+alias ls='exa'
+alias la='exa -a'
+alias ll='exa -l'
+alias lla='exa -la'
+alias cal='cal -m'
+alias rndbg='adb shell input keyevent 82'
+alias logcat="adb logcat -v color"
+alias grep="rg"
+alias t='tmux -2'
+alias gpurge='purge = branch --merged master | grep -v master | xargs git branch -d'
+alias dc='docker compose'
+alias dcs="docker stop $(docker ps -aq)"
+alias dcp="docker rm $(docker ps -aq)"
+#alias pbcopy="xclip -sel clip"
+alias docker-top='docker run -ti -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
+alias dotfiles='cd ~/.dotfiles'
