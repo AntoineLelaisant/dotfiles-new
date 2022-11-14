@@ -7,9 +7,12 @@ export SAVEHIST=1000
 
 export ZPLUG_HOME=/usr/local/opt/zplug
 
-export ANDROID_HOME=${HOME}/Android/Sdk
-export JAVA_HOME="/usr/lib/jvm/java-8-openjdk/jre"
+export ANDROID_HOME=${HOME}/Library/Android/sdk
+#export JAVA_HOME="/usr/lib/jvm/java-8-openjdk/jre"
+#export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-19.jdk/Contents/Home"
 export _JAVA_AWT_WM_NONREPARENTING=1 # Fixes grey java apps
+export PATH=${PATH}:/usr/local/sbin
 export PATH=${PATH}:${HOME}/.bin
 export PATH=${PATH}:${HOME}/.local/bin
 export PATH=${PATH}:${ANDROID_HOME}/emulator
@@ -27,7 +30,8 @@ export FZF_DEFAULT_OPTS="--ansi"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export _JAVA_OPTIONS=-Djava.io.tmpdir=/var/tmp
-export VISUAL=vim
+export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
+export GPG_TTY=$(tty)
