@@ -7,8 +7,10 @@ go-task/tap/go-task
 mkcert
 neofetch
 neovim
+ngrok
 node
 nss
+php
 ripgrep
 tmux
 wget
