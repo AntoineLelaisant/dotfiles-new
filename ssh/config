@@ -2,3 +2,7 @@ Host *.github.com
   AddKeysToAgent yes
   UseKeychain yes
   IdentityFile ~/.ssh/id_ed25519
+
+Host defimedoc.prod
+  AddKeysToAgent yes
+  Hostname 54.37.229.123

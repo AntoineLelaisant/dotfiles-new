@@ -28,10 +28,10 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 ###############################################################################
 
 # Set computer name (as done via System Preferences → Sharing)
-sudo scutil --set ComputerName "iMac-de-KNP"
-sudo scutil --set HostName "pegaze"
-sudo scutil --set LocalHostName "pegaze"
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "iMac-de-KNP"
+sudo scutil --set ComputerName "MBP-antoine"
+sudo scutil --set HostName "heracles"
+sudo scutil --set LocalHostName "heracles"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "MBP-antoine"
 
 # Set standby delay to 24 hours (default is 1 hour)
 sudo pmset -a standbydelay 86400
@@ -532,14 +532,6 @@ defaults write com.google.Chrome.canary ExtensionInstallSources -array "https://
 
 if [[ -f $HOME/.dotfiles/deploy/packages/homebrew ]]; then
   brew install $(cat $HOME/.dotfiles/deploy/packages/homebrew)
-fi
-
-###############################################################################
-# Gem
-###############################################################################
-
-if [[ -f $HOME/.dotfiles/deploy/packages/gem ]]; then
-  sudo gem install $(cat $HOME/.dotfiles/deploy/packages/gem)
 fi
 
 ###############################################################################
