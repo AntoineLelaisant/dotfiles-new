@@ -8,7 +8,7 @@ export SAVEHIST=1000
 export ZPLUG_HOME=/opt/homebrew/opt/zplug
 
 export ANDROID_HOME=${HOME}/Library/Android/sdk
-export ANDROID_NDK=${HOME}/Library/Android/sdk/ndk/24.0.8215888
+# export ANDROID_NDK=${HOME}/Library/Android/sdk/ndk/23.1.77796
 #export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
 #export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-20.jdk/Contents/Home"
 export JAVA_HOME=$(/usr/libexec/java_home -v 17)
@@ -26,14 +26,17 @@ export PATH=${PATH}:${HOME}/lib/flutter/bin
 export PATH="$PATH:/usr/bin/dart"
 export PATH="$HOME/.symfony/bin:$PATH"
 export PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
+export PATH="$HOME/.docker/bin:$PATH"
 
 export FZF_DEFAULT_COMMAND='fd --hidden --type f --follow --color=always --exclude .git'
 export FZF_DEFAULT_OPTS="--ansi"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-export _JAVA_OPTIONS=-Djava.io.tmpdir=/var/tmp
+#export _JAVA_OPTIONS=-Djava.io.tmpdir=/var/tmp
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
 export GPG_TTY=$(tty)
+
+export NVM_DIR="$HOME/.nvm"

@@ -28,7 +28,7 @@
 [pull]
     default = current
 [interactive]
-   diffFilter = /usr/bin/diff-so-fancy
+   diffFilter = /opt/homebrew/bin/diff-so-fancy
 [commit]
     gpgsign = true
 [gpg]

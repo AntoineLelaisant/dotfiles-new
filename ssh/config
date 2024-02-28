@@ -6,3 +6,8 @@ Host *.github.com
 Host defimedoc.prod
   AddKeysToAgent yes
   Hostname 54.37.229.123
+
+Host wedding.prod
+  AddKeysToAgent yes
+  Hostname 51.77.157.30
+  User ubuntu

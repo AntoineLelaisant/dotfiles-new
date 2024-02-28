@@ -29,6 +29,7 @@ zsh/zshenv
 zsh/zshplugins
 zsh/zshrc
 zsh/zshtheme
+zsh/p10k.zsh
 [endfiles]
 
 # Hosts to sync

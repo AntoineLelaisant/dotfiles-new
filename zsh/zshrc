@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 source $HOME/.zshenv
 source $HOME/.zshplugins
 source $HOME/.zshtheme
@@ -7,6 +14,9 @@ setopt correct # Command correction
 setopt globdots # Hidden files tab completion
 setopt auto_pushd
 stty -ixon # Disables XON/XOFF flow control
+
+[ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"
+[ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"
 
 zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==34=34}:${(s.:.)LS_COLORS}")'; # Tab colors
 
@@ -62,8 +72,6 @@ bindkey '^[[B' history-substring-search-down
 
 #eval $(keychain --eval --quiet id_ed25519 $HOME/.ssh/id_ed25519)
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 export FZF_CTRL_T_OPTS="--bind ?:toggle-preview --preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 
 _fzf_compgen_path() {
@@ -82,10 +90,10 @@ _fzf_complete_docker() {
   # delete empty lines
   DOCKER_COMMANDS=$(docker --help 2>&1 >/dev/null |
     sed -n -e '/Management Commands:/,$p' |
-    grep -v "Management Commands:" |
-    grep -v "Commands:" |
-    grep -v 'COMMAND --help' |
-    grep .
+    rg -v "Management Commands:" |
+    rg -v "Commands:" |
+    rg -v 'COMMAND --help' |
+    rg .
   )
 
   ARGS="$@"
@@ -122,3 +130,7 @@ rp() {
 }
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+source $HOME/.rvm/scripts/rvm
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
