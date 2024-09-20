@@ -12,4 +12,4 @@ ssh/id*
 ssh/environment*
 ssh/known_hosts
 ssh/master/*
-
+ssh/config

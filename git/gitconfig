@@ -6,16 +6,14 @@
     changed = yellow
 [user]
     name = Antoine Lelaisant
-    email = antoine.lelaisant@knplabs.com
-	signingkey = D01D3F432D1DABC2D354386A609F79EEE10C0AE5
+    email = antoine.lelaisant@lepetitvapoteur.com
+	signingkey = 1C1B82577F12B82F
 [alias]
     ci = commit
     co = checkout
     st = status
     br = branch
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s%Cgreen(%cr) %C(bold blue)<%an>%Creset'--abbrev-commit --date=relative
-[merge]
-    tool = meld
 [mergetool]
     keepBackup = false
 [core]
@@ -30,9 +28,9 @@
 [interactive]
    diffFilter = /opt/homebrew/bin/diff-so-fancy
 [commit]
-    gpgsign = true
+	gpgsign = true
 [gpg]
-    program = gpg
+	program = gpg
 [hub]
 	protocol = git
 [init]

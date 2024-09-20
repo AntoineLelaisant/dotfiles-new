@@ -1,13 +1,62 @@
+Include ~/.orbstack/ssh/config
+
 Host *.github.com
   AddKeysToAgent yes
   UseKeychain yes
   IdentityFile ~/.ssh/id_ed25519
 
-Host defimedoc.prod
-  AddKeysToAgent yes
-  Hostname 54.37.229.123
+Host web1-prod
+  User gt107282
+  Hostname ns3196879.ip-141-94-101.eu
+  Port 65022
 
-Host wedding.prod
-  AddKeysToAgent yes
-  Hostname 51.77.157.30
-  User ubuntu
+Host admin.web1-prod
+  User admingt107282
+  Hostname ns3196879.ip-141-94-101.eu
+  Port 65022
+
+Host erp-prod
+  User gt107282
+  Hostname ns3159126.ip-51-91-219.eu
+  Port 65022
+
+Host admin.erp
+  User admingt107282
+  Hostname ns3159126.ip-51-91-219.eu
+  Port 65022
+
+Host mysql1-prod
+  User gt107282
+  Hostname ns3199180.ip-141-94-101.eu
+  Port 65022
+
+Host *
+  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+
+Host LPV-PROD
+  HostName ns3196879.ip-141-94-101.eu
+  Port 65022
+  User gt107282
+  IdentityFile /Users/antoinelelaisant/.ssh/id_rsa_LPV-PROD
+
+
+Host LPV-PREPROD
+  HostName kks1069.kokiris.net
+  Port 65022
+  User gt107282
+  IdentityFile /Users/antoinelelaisant/.ssh/id_rsa_LPV-PREPROD
+
+
+Host LPV-PREPROD_ADMIN
+  HostName kks1069.kokiris.net
+  Port 65022
+  User admingt107282
+  IdentityFile /Users/antoinelelaisant/.ssh/id_rsa_LPV-PREPROD_ADMIN
+
+
+Host LPV-STAGING
+  HostName kks1069.kokiris.net
+  Port 65022
+  User gt107282
+  IdentityFile /Users/antoinelelaisant/.ssh/id_rsa_LPV-STAGING
+

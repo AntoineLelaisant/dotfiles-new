@@ -1,3 +1,6 @@
+# Amazon Q pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -13,7 +16,7 @@ source $HOME/.zshaliases
 setopt correct # Command correction
 setopt globdots # Hidden files tab completion
 setopt auto_pushd
-stty -ixon # Disables XON/XOFF flow control
+# stty -ixon # Disables XON/XOFF flow control
 
 [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"
 [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"
@@ -63,7 +66,6 @@ bindkey "\e[H" beginning-of-line
 bindkey '^[[Z' reverse-menu-complete
 
 # Enables emacs mode
-
 set -o emacs
 
 # Arrows search
@@ -71,6 +73,8 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 #eval $(keychain --eval --quiet id_ed25519 $HOME/.ssh/id_ed25519)
+
+source <(fzf --zsh)
 
 export FZF_CTRL_T_OPTS="--bind ?:toggle-preview --preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 
@@ -128,9 +132,13 @@ fif() {
 rp() {
   sd $1 $2 $(fif $1)
 }
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-source $HOME/.rvm/scripts/rvm
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Amazon Q post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
+
+# Ngrok completion
+if command -v ngrok &>/dev/null; then
+  eval "$(ngrok completion)"
+fi

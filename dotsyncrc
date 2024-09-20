@@ -20,10 +20,10 @@
 dotsyncrc
 git/gitconfig
 git/gitignore
-kitty/kitty.conf:.config/kitty/kitty.conf
 ssh
 tmux
 tmux/tmux.conf
+hyper/hyper.js:.hyper.js
 zsh/zshaliases
 zsh/zshenv
 zsh/zshplugins
