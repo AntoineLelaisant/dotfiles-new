@@ -486,6 +486,14 @@ if [[ -f $HOME/.dotfiles/deploy/packages/npm ]]; then
 fi
 
 ###############################################################################
+# Vagrant                                                                     #
+###############################################################################
+
+if [[ -f $HOME/.dotfiles/deploy/vagrant/plugins ]]; then
+  vagrant plugin install $(cat $HOME/.dotfiles/deploy/vagrant/plugins)
+fi
+
+###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 
