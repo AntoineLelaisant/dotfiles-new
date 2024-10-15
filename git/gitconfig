@@ -1,37 +1,42 @@
-[color]
-    diff = auto
-    status = auto
-    branch = auto
-[color "status"]
-    changed = yellow
-[user]
-    name = Antoine Lelaisant
-    email = antoine.lelaisant@lepetitvapoteur.com
-	signingkey = 1C1B82577F12B82F
-[alias]
-    ci = commit
-    co = checkout
-    st = status
-    br = branch
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s%Cgreen(%cr) %C(bold blue)<%an>%Creset'--abbrev-commit --date=relative
-[mergetool]
-    keepBackup = false
 [core]
-    editor = nvim
-    fileMode = false
-    excludesfile = ~/.gitignore
-    pager = diff-so-fancy | less --tabs=4 -RFX
+  editor = code --wait
+[diff]
+  tool = code
+[difftool "code"]
+  cmd = code --wait --diff $LOCAL $REMOTE
+[merge]
+  tool = code
+[mergetool "code"]
+  cmd = code --wait $MERGED
+[mergetool]
+  keepBackup = false
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+[color "status"]
+  changed = yellow
+[user]
+  name = Antoine Lelaisant
+  email = antoine.lelaisant@lepetitvapoteur.com
+  signingkey = 1C1B82577F12B82F
+[alias]
+  ci = commit
+  co = checkout
+  st = status
+  br = branch
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s%Cgreen(%cr) %C(bold blue)<%an>%Creset'--abbrev-commit --date=relative
 [push]
-    default = current
+  default = current
 [pull]
-    default = current
+  default = current
 [interactive]
-   diffFilter = /opt/homebrew/bin/diff-so-fancy
+  diffFilter = /opt/homebrew/bin/diff-so-fancy
 [commit]
-	gpgsign = true
+  gpgsign = true
 [gpg]
-	program = gpg
+  program = gpg
 [hub]
-	protocol = git
+  protocol = git
 [init]
-	defaultBranch = master
+  defaultBranch = main
